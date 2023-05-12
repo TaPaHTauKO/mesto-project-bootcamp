@@ -1,0 +1,10 @@
+.popup__input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 0 auto 30px auto;
+}
+
+.popup__input:last-of-type {
+    margin-bottom: 47px;
+}
