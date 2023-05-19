@@ -2,3 +2,10 @@
     max-width: 68.75%;
     margin: 0 auto;
 }
+
+@media screen and (max-width:440px) {
+    .page {
+        max-width: 100%;
+        margin: 0 19px;
+    }
+}
