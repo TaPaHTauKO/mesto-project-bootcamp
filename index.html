@@ -37,32 +37,6 @@
 
 
             <section class="elements">
-                <div class="element">
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="element__img">
-                    <h2 class="element__text">Карачаевск</h2>
-                    <button class="element__button" type="button"></button>
-                </div>
-                <div class="element">
-                    <img src="./images/kirill-pershin22.jpg" alt="Эльбрус" class="element__img">
-                    <h2 class="element__text">Эльбрус</h2>
-                    <button class="element__button" type="button"></button>
-                </div>
-                <div class="element"><img src="./images/kirill333.jpg" alt="Домбай" class="element__img">
-                    <h2 class="element__text">Домбай</h2>
-                    <button class="element__button" type="button"></button>
-                </div>
-                <div class="element"><img src="./images/444.jpg" alt="Эльбрус" class="element__img">
-                    <h2 class="element__text">Эльбрус</h2>
-                    <button class="element__button" type="button"></button>
-                </div>
-                <div class="element"><img src="./images/555.jpg" alt="Домбай" class="element__img">
-                    <h2 class="element__text">Домбай</h2>
-                    <button class="element__button" type="button"></button>
-                </div>
-                <div class="element"><img src="./images/666.jpg" alt="Карачаево-Черкеск" class="element__img">
-                    <h2 class="element__text">Карачаево-Черкеск</h2>
-                    <button class="element__button" type="button"></button>
-                </div>
 
             </section>
 
@@ -75,21 +49,56 @@
 
         </footer>
 
-        <div class="popup popup_opened">
+        <div class="popup popup_edit-profile">
 
             <div class="popup__container">
                 <button class="popup__close-button" type="button"></button>
                 <h2 class="popup__text">Редактирование профиля</h2>
                 <form class="popup__form">
-                    <input type="text" class="popup__input">
-                    <input type="text" class="popup__input">
+                    <input type="text" class="popup__input input_profile-name" placeholder="Имя профиля">
+                    <input type="text" class="popup__input input_profile-subtitle" placeholder="описание профиля">
                     <button class="popup__button" type="submit">Сохранить</button>
                 </form>
 
             </div>
         </div>
 
+        <div class="popup popup_new-card">
+
+            <div class="popup__container">
+                <button class="popup__close-button" type="button"></button>
+                <h2 class="popup__text">Новое место</h2>
+                <form class="popup__form popup__form_new-card">
+                    <input type="text" class="popup__input input_name-card" placeholder="Название">
+                    <input type="url" class="popup__input input_url" placeholder="Ссылка">
+                    <button class="popup__button" type="submit">Сохранить</button>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="popup popup_fullskrin">
+
+            <div class="popup__img-container">
+                <button class="popup__close-button" type="button"></button>
+                <img src="#" alt="#" class="popup__image">
+                <h2 class="popup__img-text">#</h2>
+            </div>
+        </div>
+
     </div>
+    <template id="elementTemplate">
+
+        <div class="element">
+            <img src="#" alt="#" class="element__img">
+            <h2 class="element__text">#</h2>
+            <button class="element__button" type="button"></button>
+            <button class="element__delete-button" type="button"></button>
+        </div>
+
+    </template>
+
+    <script src="./index.js"></script>
 
 
 
