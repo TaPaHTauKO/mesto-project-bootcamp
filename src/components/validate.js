@@ -1,5 +1,5 @@
 
-function enableValidation() {
+export function enableValidation() {
     const formList = document.querySelectorAll('.popup__form');
     formList.forEach((form) => { setEventListener(form) });
 }

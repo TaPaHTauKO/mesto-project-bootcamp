@@ -27,7 +27,7 @@ const initialCards = [
     }
 ];
 
-function createElement(name, link) {
+export function createElement(name, link) {
     const elementCard = templateElement.cloneNode(true);
     const textElement = elementCard.querySelector('.element__text');
     const imgElement = elementCard.querySelector('.element__img');
@@ -49,4 +49,19 @@ function createElement(name, link) {
 initialCards.forEach((item) => {
     const newCard = createElement(item.name, item.link);
     itemSection.append(newCard);
-})
+});
+
+function handleDeleteCard(item) {
+    item.remove();
+};
+
+function paintLike(item) {
+    item.classList.toggle('element__button_painted');
+};
+
+function openImgFullskrin(item) {
+    openPopup(popupFullskrinImage);
+    imageFullskrin.src = item.src;
+    imageFullskrin.alt = item.alt;
+    titleImg.textContent = item.alt;
+};
