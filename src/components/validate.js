@@ -1,12 +1,11 @@
-
-export function enableValidation() {
-    const formList = document.querySelectorAll('.popup__form');
-    formList.forEach((form) => { setEventListener(form) });
+export function enableValidation(validSettings) {
+    const formList = document.querySelectorAll(validSettings.formSelector);
+    formList.forEach((form) => { setEventListener(form, validSettings) });
 }
 
-function setEventListener(form) {
-    const inputList = form.querySelectorAll('.popup__input');
-    const submitButton = form.querySelector('.popup__button');
+function setEventListener(form, validSettings) {
+    const inputList = form.querySelectorAll(validSettings.inputSelector);
+    const submitButton = form.querySelector(validSettings.submitButtonSelector);
     checkFormValidity(form, submitButton);
     inputList.forEach(input => {
         input.addEventListener('input', () => {
@@ -32,7 +31,7 @@ function disableButton(submitButton) {
     submitButton.disabled = true;
 };
 
-function chekValid(input, form) {
+function chekValid(input) {
     if (input.validity.valid){
         hideError(input);
     } else {
@@ -40,7 +39,7 @@ function chekValid(input, form) {
     }
 };
 
-function hideError(input,) {
+function hideError(input) {
     const spanId = `error-${input.id}`;
     const errorField = document.getElementById(spanId);
     errorField.textContent = '';

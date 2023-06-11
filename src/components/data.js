@@ -1,3 +1,9 @@
+export const validSettings = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button'
+}
+
 export const popupEditProfile = document.querySelector('.popup_edit-profile');
 export const buttonEditProfile = document.querySelector('.profile__edit-button');
 
@@ -19,3 +25,4 @@ export const inputProfileName = document.querySelector('.input_profile-name');
 
 export const profileSubtitle = document.querySelector('.profile__subtitle');
 export const inputProfileSubtitle = document.querySelector('.input_profile-subtitle');
+export const itemSection = document.querySelector('.elements');

@@ -15,21 +15,28 @@ import {
     inputProfileName,
     profileSubtitle,
     inputProfileSubtitle
-} from "./components/data";
+} from "./components/data.js";
+import { itemSection } from './components/data.js';
+import { validSettings } from './components/data.js';
 
-import { enableValidation } from "./components/validate";
+import { enableValidation } from "./components/validate.js";
 
-import { createElement } from "./components/card";
+import { createElement } from "./components/card.js";
 
-import { openPopup } from "./components/modal";
+import { openPopup } from "./components/modal.js";
+import { closePopup } from "./components/modal.js";
 
-import { closePopup } from "./components/modal";
+import { loadingProfile } from './components/api.js';
+import { getCardsApi } from './components/api.js';
+
+
+
+let userId
 
 function openEditProfile() {
     openPopup(popupEditProfile);
     inputProfileName.value = profileName.textContent;
     inputProfileSubtitle.value = profileSubtitle.textContent;
-    enableValidation()
 };
 
 function submitProfile(event) {
@@ -53,8 +60,23 @@ function handleFormSubmit(event) {
     const newCard = createElement(inputNameCard.value, inputUrlCard.value);
     itemSection.prepend(newCard);
     elementForm.reset();
-    enableValidation()
+    closePopup()
 };
+
+
+Promise.all([loadingProfile(), getCardsApi()])
+    .then(([userData, allCards]) => {
+        userId = userData._id;
+        profileName.textContent = userData.name;
+        profileSubtitle.textContent = userData.about;
+        //profileAvatar.src = userData.avatar;
+        //prosileAvatar.alt = userData.name;
+
+        allCards.forEach((item) => {
+            const newCard = createElement(item.name, item.link, userId, item);
+            itemSection.append(newCard);
+        });
+    })
 
 
 popupEditProfile.addEventListener('submit', submitProfile);
@@ -68,4 +90,4 @@ closeButton.forEach(button => button.addEventListener('click', closePopup));
 buttonEditProfile.addEventListener('click', openEditProfile);
 buttonNewCard.addEventListener('click', openNewCard);
 
-enableValidation()
+enableValidation(validSettings)

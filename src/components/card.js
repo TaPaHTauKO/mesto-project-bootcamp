@@ -1,4 +1,10 @@
-const itemSection = document.querySelector('.elements');
+import { itemSection } from "./data.js";
+import { imageFullskrin } from "./data.js";
+import { titleImg } from "./data.js";
+import { popupFullskrinImage } from "./data.js";
+import { openPopup } from "./modal.js";
+import { getCardsApi } from "./api.js";
+import { deleteCardFromServer } from "./api.js";
 const templateElement = document.getElementById('elementTemplate').content.querySelector('.element');
 const initialCards = [
     {
@@ -27,17 +33,19 @@ const initialCards = [
     }
 ];
 
-export function createElement(name, link) {
+export function createElement(name, link, userId, item) {
     const elementCard = templateElement.cloneNode(true);
     const textElement = elementCard.querySelector('.element__text');
     const imgElement = elementCard.querySelector('.element__img');
+    const likeCount = elementCard.querySelector('.element__like-counter');
     textElement.textContent = name;
     imgElement.src = link;
     imgElement.alt = name;
+    imgElement.id = userId;
 
     const likeButton = elementCard.querySelector('.element__button');
     const deleteButton = elementCard.querySelector('.element__delete-button');
-    deleteButton.addEventListener('click', () => handleDeleteCard(elementCard));
+    addDeleteButton(userId, item.owner._id, deleteButton, item._id)
     likeButton.addEventListener('click', () => paintLike(likeButton));
     imgElement.addEventListener('click', () => openImgFullskrin(imgElement));
 
@@ -46,14 +54,14 @@ export function createElement(name, link) {
     return elementCard;
 };
 
-initialCards.forEach((item) => {
-    const newCard = createElement(item.name, item.link);
-    itemSection.append(newCard);
-});
+function addDeleteButton(userId, ownerID, deleteButton, cardId) {
+    if (userId !== ownerID) {
+        deleteButton.remove();
+    } else {
+        deleteButton.addEventListener('click', () => deleteCardFromServer(cardId));
+    }
+}
 
-function handleDeleteCard(item) {
-    item.remove();
-};
 
 function paintLike(item) {
     item.classList.toggle('element__button_painted');

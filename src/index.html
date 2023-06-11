@@ -83,6 +83,21 @@
             </div>
         </div>
 
+        <div class="popup popup_avatar">
+
+            <div class="popup__container">
+                <button class="popup__close-button" type="button"></button>
+                <h2 class="popup__text">Обновить аватар</h2>
+                <form class="popup__form popup__form_avatar" name="avatar" novalidate>
+                    <input type="text" class="popup__input input_avatar" id="avatar" placeholder="Ссылка на аватар"
+                        required minlength="5">
+                    <span class="popup__span" id="error-avatar"></span>
+                    <button class="popup__button" type="submit">Сохранить</button>
+                </form>
+
+            </div>
+        </div>
+
         <div class="popup popup_fullskrin">
 
             <div class="popup__img-container">
@@ -98,7 +113,10 @@
         <div class="element">
             <img src="#" alt="#" class="element__img">
             <h2 class="element__text">#</h2>
-            <button class="element__button" type="button"></button>
+            <div class="element__div">
+                <button class="element__button" type="button"></button>
+                <p class="element__like-counter">1</p>
+            </div>
             <button class="element__delete-button" type="button"></button>
         </div>
 

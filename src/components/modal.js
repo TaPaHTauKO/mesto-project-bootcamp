@@ -4,10 +4,12 @@ export function openPopup(item) {
     item.addEventListener('click', closeByOverlay);
 };
 
-export function closePopup() {    
+export function closePopup() {
     const popupOpen = document.querySelector('.popup_opened');
+    if (typeof(popupOpen) != 'undefined' && popupOpen != null) {
     popupOpen.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
+}
 };
 
 
@@ -20,5 +22,6 @@ function closeByEsc(e) {
 function closeByOverlay(e) {
     if (e.target.classList.contains('popup_opened')) {
         closePopup();
+        e.target.removeEventListener('click', closeByOverlay);
     };
 }
