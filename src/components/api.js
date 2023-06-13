@@ -56,6 +56,7 @@ export function addLikeFromServer(cardId) {
         .then((res) => checkAnswer(res))
 }
 
+
 export function deleteLikeFromServer(cardId) {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
         method: 'DELETE',

@@ -26,3 +26,9 @@ export const inputProfileName = document.querySelector('.input_profile-name');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
 export const inputProfileSubtitle = document.querySelector('.input_profile-subtitle');
 export const itemSection = document.querySelector('.elements');
+
+export const popupEditAvatar = document.querySelector('.popup_avatar');
+export const buttonEditAvatar = document.querySelector('.profile__div');
+export const inputAvatarUrl = document.querySelector('.input_avatar');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const avatarForm = document.querySelector('.popup__form_avatar');
