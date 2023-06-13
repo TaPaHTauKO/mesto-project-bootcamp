@@ -54,8 +54,9 @@ function submitProfile(event) {
     .then((res) => {
         profileName.textContent = res.name,
         profileSubtitle.textContent = res.about;
+        closePopup()
     })
-    closePopup()
+    
     .catch(e => console.log(e))
     .finally(() => {
         event.submitter.textContent = 'Сохранить'
@@ -76,16 +77,18 @@ function handleFormSubmit(event) {
     event.submitter.textContent = 'Сохранение...'
     addCardFromServer(inputNameCard.value, inputUrlCard.value)
     .then((res) =>{
-      const newCard =  createElement(res.name, res.link, res._id, res);
+      const newCard =  createElement(res.name, res.link, userId, res);
       itemSection.prepend(newCard);
+      closePopup()
+      elementForm.reset();
     })
     .catch(e => console.log(e))
     .finally(() => {
         event.submitter.textContent = 'Сохранить'
     })
 
-    elementForm.reset();
-    closePopup()
+    
+    
 };
 
 function handleSubmitAvatarForm(event) {

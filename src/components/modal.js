@@ -9,6 +9,7 @@ export function closePopup() {
     if (typeof(popupOpen) != 'undefined' && popupOpen != null) {
     popupOpen.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
+    popupOpen.removeEventListener('keydown', closeByOverlay);
 }
 };
 

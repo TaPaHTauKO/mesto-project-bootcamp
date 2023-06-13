@@ -17,20 +17,20 @@ export function createElement(name, link, userId, item) {
     const likeCount = elementCard.querySelector('.element__like-counter');
     const likeButton = elementCard.querySelector('.element__button');
     const deleteButton = elementCard.querySelector('.element__delete-button');
-    let cardLikes = item.likes
+    const cardLikes = item.likes
     textElement.textContent = name;
     imgElement.src = link;
     imgElement.alt = name;
-    imgElement.id = userId;
+    elementCard.id = item._id;
 
     addDeleteButton(userId, item.owner._id, deleteButton, item._id)
 
 
-    likeButton.addEventListener('click',() => paintedLike());
+    likeButton.addEventListener('click', () => paintedLike());
 
 
     updateLike(cardLikes, likeButton, userId);
-   
+
 
     function isLiked(likesArray, userId) {
         return likesArray.some(item => item._id === userId)
@@ -42,11 +42,11 @@ export function createElement(name, link, userId, item) {
     };
 
     function paintedLike(evt) {
-        let queryMetod = likeButton.classList.contains('element__button_painted') ? deleteLikeFromServer(item._id) : addLikeFromServer(item._id);
+        const queryMetod = likeButton.classList.contains('element__button_painted') ? deleteLikeFromServer(item._id) : addLikeFromServer(item._id);
         queryMetod
             .then(res => {
                 updateLike(res.likes, likeButton, userId)
-                            
+
             })
             .catch(e => console.log(e))
     };
@@ -58,16 +58,23 @@ export function createElement(name, link, userId, item) {
     return elementCard;
 };
 
-
-
-
 function addDeleteButton(userId, ownerID, deleteButton, cardId) {
     if (userId !== ownerID) {
         deleteButton.remove();
     } else {
-        deleteButton.addEventListener('click', () => deleteCardFromServer(cardId));
-    }
+        deleteButton.addEventListener('click', () => handleDeleteCard(cardId))
+    };
 }
+
+function handleDeleteCard(cardId) {
+    deleteCardFromServer(cardId)
+    .then((res) => {
+        const deletingCard = document.getElementById(`${cardId}`)
+        deletingCard.remove()
+    })
+    .catch(e => console.log(e))
+}
+
 
 
 function openImgFullskrin(item) {
