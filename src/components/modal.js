@@ -9,7 +9,7 @@ export function closePopup() {
     if (typeof(popupOpen) != 'undefined' && popupOpen != null) {
     popupOpen.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
-    popupOpen.removeEventListener('keydown', closeByOverlay);
+    popupOpen.removeEventListener('click', closeByOverlay);
 }
 };
 
@@ -23,6 +23,5 @@ function closeByEsc(e) {
 function closeByOverlay(e) {
     if (e.target.classList.contains('popup_opened')) {
         closePopup();
-        e.target.removeEventListener('click', closeByOverlay);
     };
 }
